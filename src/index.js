@@ -36,67 +36,26 @@ let getBreeds = fetch('https://dog.ceo/api/breeds/list/all')
 
 let dropdown = document.querySelector(`select#breed-dropdown`);
 dropdown.addEventListener('change', (e) => {
+  
   let choice = e.target.value;
-  choiceArray.push(choice)
+  choiceArray.unshift(choice)
   breedList.innerHTML = '';
-  getNewBreedList() 
-})
-  function getNewBreedList(){
-    let breedList = document.createElement('ul')
     for (let breedName of dogBreedArray){
      let splitBreedName = breedName.split('');
      let firstLetter = splitBreedName[0];
-  const oldDogs = document.querySelectorAll("li");
-  const newDogs = document.createElement("li");
-  newDogs.textContent = breedName
 
-     if (firstLetter === choiceArray[0]){
-       console.log(breedName)
-      //debugger;
-      breed.textContent = breedName
-      let breed = document.getElementsByTagName('li');
-      breedList.appendChild(breed)
+if (firstLetter === choiceArray[0]){
+  
+  
+     let breed = document.createElement('li');
+      breed.textContent = breedName;
+
+      document.getElementById('dog-breeds').append(breed)
     }
-    }}
-    // let firstLetterDogs = dogBreedArray.filter(dog => choice === firstLetter)
-    //   console.log(firstLetterDogs)
-    //  if (){
-    //   let breedLi = document.getElementById("#breed")
-    //   ;
-      
-
-    //  }
-
-
-
-//.textContent.split('')
-
-//const firstLetterBreeds = getBreeds.filter(letterBreed => (letterBreed === letterBreed))
-
- // let allBreeds = document.querySelectorAll('li')
-  // for (let firstLetterBreeds of breedList){
-  //   let breedLetters = firstLetterBreeds.textContent.split('')
-  //   let firstLetter = breedLetters[0]
-  //     if (choice===firstLetter)
-  //     {
-
-  //       
-  //     getBreed.forEach()(newBreed => {
-  //       newLi.textContent = newBreed.value 
-  //     })
-  //   }
-  // }
-
-
-///you forgot all about the filter() method. Try that next.
-
-// function filterBreeds(){
-//   let choices = document.querySelectorAll('option').selectedOptions.value;
-//   //let letterChoice = choices.input.value;
-//   console.log(choices)
+}})
   
-// let letters = breed.substring(0,1);
   
+
 
 
   
