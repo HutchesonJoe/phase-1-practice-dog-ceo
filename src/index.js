@@ -25,14 +25,12 @@ let getBreeds = fetch('https://dog.ceo/api/breeds/list/all')
   let dogBreeds = data.message
   for (let dogBreed in dogBreeds){
     dogBreedArray.push(dogBreed)
-    let breed = document.createElement('li');
-    breed.id = `firstList`
-    breed.textContent = dogBreed
-    breed.addEventListener('click', function(){
-      breed.style.color = 'blue'
+    let dog = document.createElement('li');
+    dog.textContent = dogBreed
+    dog.addEventListener('click', function(){
+      dog.style.color = 'blue'
     }) 
-    //console.log(breed)
-    breedList.appendChild(breed)
+    breedList.appendChild(dog)
   }
 })
 
@@ -40,10 +38,9 @@ let dropdown = document.querySelector(`select#breed-dropdown`);
 dropdown.addEventListener('change', (e) => {
   let choice = e.target.value;
   choiceArray.push(choice)
-  
+  breedList.innerHTML = '';
   getNewBreedList() 
 })
-//you have pushed choice into choiceArray which makes it available globally.
   function getNewBreedList(){
     let breedList = document.createElement('ul')
     for (let breedName of dogBreedArray){
@@ -55,11 +52,10 @@ dropdown.addEventListener('change', (e) => {
 
      if (firstLetter === choiceArray[0]){
        console.log(breedName)
-      breedList.replaceChildren(newDogs, oldDogs)
-      // let newLi = document.createElement('li');
-      // newLi.textContent = breedName
-      // breedList.appendChild(newLi)
-      
+      //debugger;
+      breed.textContent = breedName
+      let breed = document.getElementsByTagName('li');
+      breedList.appendChild(breed)
     }
     }}
     // let firstLetterDogs = dogBreedArray.filter(dog => choice === firstLetter)
