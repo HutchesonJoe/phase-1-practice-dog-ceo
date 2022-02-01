@@ -17,6 +17,7 @@ fetch('https://dog.ceo/api/breeds/image/random/4')
 
 let breedList = document.getElementById('dog-breeds');
 let dogBreedArray = []
+let choiceArray = []
 
 let getBreeds = fetch('https://dog.ceo/api/breeds/list/all')
 .then (response => response.json())
@@ -25,29 +26,42 @@ let getBreeds = fetch('https://dog.ceo/api/breeds/list/all')
   for (let dogBreed in dogBreeds){
     dogBreedArray.push(dogBreed)
     let breed = document.createElement('li');
-    breed.id = "breed"
+    breed.id = `firstList`
     breed.textContent = dogBreed
     breed.addEventListener('click', function(){
       breed.style.color = 'blue'
-    })
+    }) 
+    //console.log(breed)
     breedList.appendChild(breed)
   }
 })
 
 let dropdown = document.querySelector(`select#breed-dropdown`);
 dropdown.addEventListener('change', (e) => {
-  let choice = e.target.value
-  breedList.remove(breed)
-  for (let breedName of dogBreedArray){
+  let choice = e.target.value;
+  choiceArray.push(choice)
+  
+  getNewBreedList() 
+})
+//you have pushed choice into choiceArray which makes it available globally.
+  function getNewBreedList(){
+    let breedList = document.createElement('ul')
+    for (let breedName of dogBreedArray){
      let splitBreedName = breedName.split('');
      let firstLetter = splitBreedName[0];
-     if (firstLetter === choice){
-      let newLi = document.createElement('li');
-      newLi.textContent = breedName
-      breedList.appendChild(newLi)
-        
-     }
+  const oldDogs = document.querySelectorAll("li");
+  const newDogs = document.createElement("li");
+  newDogs.textContent = breedName
+
+     if (firstLetter === choiceArray[0]){
+       console.log(breedName)
+      breedList.replaceChildren(newDogs, oldDogs)
+      // let newLi = document.createElement('li');
+      // newLi.textContent = breedName
+      // breedList.appendChild(newLi)
+      
     }
+    }}
     // let firstLetterDogs = dogBreedArray.filter(dog => choice === firstLetter)
     //   console.log(firstLetterDogs)
     //  if (){
@@ -56,7 +70,7 @@ dropdown.addEventListener('change', (e) => {
       
 
     //  }
-})
+
 
 
 //.textContent.split('')
